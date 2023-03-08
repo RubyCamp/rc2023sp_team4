@@ -3,6 +3,7 @@ class Block
   def initialize(mx, my)
     self.x = mx
     self.y = my
+
     self.pattern_map = [
       [0, 1, 0],
       [0, 1, 1],
@@ -11,6 +12,6 @@ class Block
   end
 
   def update
-    self.y += 1
+    self.y += 1 if self.y < (Map::MAP_HEIGHT - self.pattern_map.length)
   end
 end

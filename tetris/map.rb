@@ -1,5 +1,7 @@
 class Map
   BLOCK_SIZE = 32
+  MAP_HEIGHT = 13
+  MAP_WEIGH = 10
 
   def initialize
     @blank_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_RED)
@@ -38,7 +40,8 @@ class Map
   private
 
   def merged_map
-    result = [
+=begin
+      result = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,6 +56,17 @@ class Map
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
+=end
+    result = []
+    MAP_HEIGHT.times do
+      line = []
+      MAP_WEIGH.times do
+        line << 0
+      end
+      result << line
+    end
+    
+
     @blocks.each do |block|
       block.pattern_map.each_with_index do |line, dy|
         line.each_with_index do |chip, dx|
