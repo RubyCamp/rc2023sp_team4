@@ -11,7 +11,7 @@ class Move
       [0, 1, 0]
     ]
     @jump = 0
-    @maxjump = -1.0
+    @maxjump = -2.0
     @jumped = false
   end
 
@@ -30,15 +30,14 @@ class Move
             @jamped = true
             self.y -= 0.5 # 上
             @jump += 0.5
+        end
+    end
             
-        else
-            self.y += 0.1
-            @jump -=0.1
-
+        if @jumped == true
+            @jump -=0.02 #1フレームに下げる高さ　自由落下の速度と同じにしたかった
         end
         if @jump <= 0
           @jumped = false
         end
-    end
-end
+      end
 end
