@@ -26,15 +26,8 @@ class Block
 
   def update
 
-    #------空白削除----------
-
-    if @bottom_limit
-      self.pattern_map.reject! {|i| i == [0,0,0]}
-      p pattern_map
-    end
-
     #------空白の削除--------
-    if @bottom_limit
+    if self.y > @bottom_limit
       pattern_map.reject! {|i| i == [0, 0, 0,] } #破壊的メソッド 
       p pattern_map
     end
@@ -48,7 +41,7 @@ class Block
     self.x += 1 if Input.key_down?(K_RIGHT)  and  self.x < @right_limit  and  self.y < @bottom_limit
     self.x -= 1 if Input.key_down?(K_LEFT) and self.x > 0 and self.y < @bottom_limit
 
-    #------操作(左右の動き　条件付き)-------------
+    #------操作(下の動き　条件付き)-------------
 
     self.y += 1 if self.y < @bottom_limit if Input.key_down?(K_DOWN)  
   end
