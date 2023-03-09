@@ -67,13 +67,11 @@ class Map
         break unless writable
       end
 
-      if writable
         block.pattern_map.each_with_index do |line, dy|
           line.each_with_index do |chip, dx|
             result[block.y + dy][block.x + dx] = chip
           end
         end
-      end
     end
     result
   end
