@@ -1,7 +1,7 @@
 class Map
   
   BLOCK_SIZE = 32
-  MAP_HEIGhT = 13 
+  MAP_HEIGHT = 13 
   MAP_WIDTH  = 10
 
   def initialize
@@ -14,18 +14,17 @@ class Map
 
   def update
     if Input.key_push?(K_SPACE)
-      @blocks << Block.new(4, 0)
+      @blocks << Block.new(MAP_WIDTH / 2 - 2, 0)
     end
     @blocks.each do |block|
       if block.stopped == false
-        block.update if @frame % 60 == 0
+        block.update if @frame % 30 == 0
         block.rotate_right if Input.key_push?(K_UP)
       end
       #block.rotate_left if Input.key_push?(K_LEFT)
     end
     @frame += 1
   end
-  
   
   def draw
     merged_map.each_with_index do |line, dy|
@@ -41,11 +40,12 @@ class Map
     end
   end
 
+
   private
 
   def merged_map
     result = []
-    MAP_HEIGhT.times do
+    MAP_HEIGHT.times do
       line = []
       MAP_WIDTH.times do
         line << 0
@@ -57,8 +57,8 @@ class Map
       writable = true #描画可能トリガー
       block.pattern_map.each_with_index do |line, dy|
         line.each_with_index do |chip, dx|
-          chip = result[block.y + dy][block.x + dx]
-          if chip == 1
+          chip_tmp = result[block.y + dy][block.x + dx]
+          if chip_tmp == 1
             writable = false
             block.stop
             break
