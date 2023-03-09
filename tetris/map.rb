@@ -27,7 +27,6 @@ class Map
   end
   
   
-  
   def draw
     merged_map.each_with_index do |line, dy|
       line.each_with_index do |chip, dx|
@@ -53,7 +52,7 @@ class Map
       end
       result << line
     end
-        
+      
     @blocks.each do |block|
       writable = true #描画可能トリガー
       block.pattern_map.each_with_index do |line, dy|

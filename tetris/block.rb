@@ -9,6 +9,7 @@ class Block
       [0, 1, 1],
       [0, 1, 0]
     ]
+
     @bottom_limit = Map::MAP_HEIGhT - self.pattern_map.length
     @right_limit = Map::MAP_WIDTH - self.pattern_map.length
     @stopped = false
