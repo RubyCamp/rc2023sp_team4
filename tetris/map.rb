@@ -5,8 +5,13 @@ class Map
   MAP_WIDTH  = 10
 
   def initialize
-    @blank_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_RED)
-    @block_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_WHITE)
+
+    @blank_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_WHITE)
+    @block_img = Image.load('../img/tetlis_sky_small.png')
+    @blank_img.set_color_key(C_WHITE)
+    @block_img.set_color_key(C_WHITE)
+    
+    #@block_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_WHITE)
 
     @blocks = []
     @frame = 1

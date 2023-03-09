@@ -27,9 +27,8 @@ class Block
   def update
 
     #------空白の削除--------
-    if self.y > @bottom_limit
+    if @bottom_limit#self.y > @bottom_limit
       pattern_map.reject! {|i| i == [0, 0, 0,] } #破壊的メソッド 
-      p pattern_map
     end
     #------自由落下----------
 
