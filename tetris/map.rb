@@ -14,12 +14,14 @@ class Map
 
   def update
     if Input.key_push?(K_SPACE)
-      @blocks << Block.new(4, 2)
+      @blocks << Block.new(4, 0)
     end
-    if @frame % 1 == 0
-      @blocks.each do |block|
-        block.update
+    @blocks.each do |block|
+      if block.stopped == false
+        block.update if @frame % 60 == 0
+        block.rotate_right if Input.key_push?(K_UP)
       end
+      #block.rotate_left if Input.key_push?(K_LEFT)
     end
     @frame += 1
   end
@@ -52,9 +54,24 @@ class Map
     end
       
     @blocks.each do |block|
+      writable = true #描画可能トリガー
       block.pattern_map.each_with_index do |line, dy|
         line.each_with_index do |chip, dx|
-          result[block.y + dy][block.x + dx] = chip
+          chip = result[block.y + dy][block.x + dx]
+          if chip == 1
+            writable = false
+            block.stop
+            break
+          end
+        end
+        break unless writable
+      end
+
+      if writable
+        block.pattern_map.each_with_index do |line, dy|
+          line.each_with_index do |chip, dx|
+            result[block.y + dy][block.x + dx] = chip
+          end
         end
       end
     end
