@@ -2,8 +2,8 @@ require 'dxruby'
 require_relative 'map'
 require_relative 'block'
 
-Window.width = 800
-Window.height = 600
+Window.width = 320
+Window.height = 416
 
 map = Map.new
 
