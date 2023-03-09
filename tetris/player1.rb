@@ -4,9 +4,10 @@ class Player1
     MAP_WIDTH = 10 # MAP横
   
     def initialize # 初期値
-      @blank_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_RED)
-      @char_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_GREEN)
-  
+      @char_img = Image.load('../img/tetlis_red_small.png')
+      #@char_img = Image.new(BLOCK_SIZE, BLOCK_SIZE).circle_fill(16, 16, 15, C_GREEN)
+      @char_img.set_color_key(C_WHITE)
+    
       @frame = 1
       @player1 = Move.new(5, 10)#自分
       
