@@ -9,8 +9,7 @@ class Block
       [0, 1, 1],
       [0, 1, 0]
     ]
-
-    @bottom_limit = Map::MAP_HEIGhT - self.pattern_map.length
+    @bottom_limit = Map::MAP_HEIGHT - self.pattern_map.length
     @right_limit = Map::MAP_WIDTH - self.pattern_map.length
     @stopped = false
     @movable = true
@@ -23,10 +22,16 @@ class Block
       self.y -= 1
       @stopped = true
     end
-    
   end
 
   def update
+
+    #------空白削除----------
+
+    if @bottom_limit
+      self.pattern_map.reject! {|i| i == [0,0,0]}
+      p pattern_map
+    end
 
     #------空白の削除--------
     if @bottom_limit
@@ -45,22 +50,12 @@ class Block
 
     #------操作(左右の動き　条件付き)-------------
 
-    self.y += 1 if self.y < @bottom_limit if Input.key_down?(K_DOWN)
-    
-  
+    self.y += 1 if self.y < @bottom_limit if Input.key_down?(K_DOWN)  
   end
   #------操作(右回転 配列の内容を変えています 条件:地面についているか否か)-------------
 
   def rotate_right
     self.pattern_map = self.pattern_map.transpose.map(&:reverse) if self.y < @bottom_limit
   end
-
-  #-----------------------------------------------------
-
-=begin  使用しない左回転
-  def rotate_left
-    self.pattern_map = self.pattern_map.transpose.reverse
-  end
-=end
 
 end
