@@ -13,7 +13,7 @@ class Block
     @d = 0
     @r = 0
     @l = 0
-    
+  
   end
 
   def update
